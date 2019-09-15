@@ -1,0 +1,35 @@
+function tomax(num){
+    //转为字符串
+    let arr=(num+'').split('');
+    //深度克隆
+    let arr1=JSON.parse(JSON.stringify(arr));
+    let max=0;
+
+    for(let i=0;i<arr1.length;i++){
+        //删除克隆对象第一个
+        arr1.shift();
+        //取其余的最大值
+        max=Math.max.apply(null,arr1);
+        let temp=arr[i];
+        //与第一个进行比较
+        if(arr[i]<max){
+            for(let j=i;j<arr.length+1;j++){
+                if(arr[j]==max){
+                    //转换
+                    arr[j]=temp;
+                    break;
+                }
+            }
+            arr[i]=max;
+            break;
+        }
+    }
+    //字符串拼接
+    let result='';
+    for(let i=0;i<arr.length;i++){
+        result+=arr[i];
+    }
+    console.log(parseInt(result));
+    //输出
+    return parseInt(result);
+}
